@@ -151,15 +151,34 @@ func InitKubeBackend() *KubeBackend {
 	return backend
 }
 
-func main() {
-
-	b := InitKubeBackend()
-
-	pods, err := b.KubeClientSet.CoreV1().Pods("").List(context.TODO(), metav1.ListOptions{})
+func InitKubeBackendInternal() *KubeBackend {
+	kubeConfig, err := rest.InClusterConfig()
+	if err != nil {
+		panic((err.Error()))
+	}
+	kubeClientSet, err := kubernetes.NewForConfig(kubeConfig)
 	if err != nil {
 		panic(err.Error())
 	}
-	fmt.Printf("There %d pods in the cluster\n", len(pods.Items))
+
+	backend := &KubeBackend{
+		KubeConfig:    kubeConfig,
+		KubeClientSet: kubeClientSet,
+	}
+
+	return backend
+}
+
+func main() {
+	var b *KubeBackend
+
+	external := flag.Bool("external", false, "should we use internal or external credentials")
+	flag.Parse()
+	if *external {
+		b = InitKubeBackend()
+	} else {
+		b = InitKubeBackendInternal()
+	}
 
 	e := echo.New()
 
