@@ -23,3 +23,9 @@ jobs:
     - name: Build Image
       run: |
         docker build -t docker.richardjameskendall.com/kube-update-api .
+    
+    - name: Login to private registry
+      run: echo ${{secrets.REGO_PW}} | docker login docker.richardjameskendall.com -u ${{secrets.REGO_USER}} --password-stdin
+    
+    - name: Push to registry
+      run: docker push docker.richardjameskendall.com/kube-update-api
