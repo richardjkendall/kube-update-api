@@ -15,7 +15,7 @@ spec:
       serviceAccountName: update-api-sa
       containers:
       - name: api
-        image: int-reg.zz9pza.co/kube-update-api:latest
+        image: kube-update-api:latest
         ports:
         - containerPort: 8080
         imagePullPolicy: Always
