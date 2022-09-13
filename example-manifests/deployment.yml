@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: update-api
+spec:
+  selector:
+    matchLabels:
+      app: update-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: update-api
+    spec:
+      serviceAccountName: update-api-sa
+      containers:
+      - name: api
+        image: int-reg.zz9pza.co/kube-update-api:latest
+        ports:
+        - containerPort: 8080
+        imagePullPolicy: Always
