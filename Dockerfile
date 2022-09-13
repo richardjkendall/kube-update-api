@@ -9,6 +9,9 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 ADD cmd/kube-api/kube-api .
 
+# install libc6 compatability library
+RUN apk add --no-cache libc6-compat
+
 # switch user
 USER $USER
 
