@@ -32,6 +32,17 @@ There are example manifests for running this in a Kubernetes cluster in the `exa
 
 `GET /deployments/:namespace/:deployment/:container`
 
+returns
+
+```json
+{
+  "Namespace": "",
+  "Deployment": "",
+  "Container": "",
+  "Image": ""
+}
+```
+
 ### Update deployment/container image
 
 `POST /deployments/:namespace/:deployment/:container`
