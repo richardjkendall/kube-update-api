@@ -12,4 +12,4 @@ ADD cmd/kube-api/kube-api .
 # switch user
 USER $USER
 
-CMD ["./kube-api"]
+CMD [ "/usr/src/app/kube-api" ]
