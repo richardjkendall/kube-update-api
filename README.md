@@ -30,7 +30,7 @@ There are example manifests for running this in a Kubernetes cluster in the `exa
 
 ### Get deployment/container details
 
-`GET /deployments/:namespace/:deployment/:container`
+`GET /deployment/:namespace/:deployment/:container`
 
 returns
 
@@ -45,7 +45,7 @@ returns
 
 ### Update deployment/container image
 
-`POST /deployments/:namespace/:deployment/:container`
+`POST /deployment/:namespace/:deployment/:container`
 
 expects the body of the request to match:
 
